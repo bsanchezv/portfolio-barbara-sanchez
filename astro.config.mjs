@@ -6,7 +6,7 @@ import tailwind from '@astrojs/tailwind';
 // - Sitio de proyecto (username.github.io/repo-name): base = '/repo-name/'
 export default defineConfig({
   site: 'https://bsanchezv.github.io',
-  base: '/Portafolio-Barbara-Sanchez/',
+  base: '/portfolio-barbara-sanchez/',
   integrations: [tailwind()],
   output: 'static',
 });
