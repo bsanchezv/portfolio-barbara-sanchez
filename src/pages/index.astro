@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SocialIcon from '../components/SocialIcon.astro';
+import { techStack, featuredProjects, contact, socialLinks } from '../data/site';
+import { withBase } from '../utils/base';
+---
+
+<BaseLayout title="Barbara — Portafolio" activeSection="home" accentColor="magenta">
+  <!-- Hero -->
+  <section class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <div class="max-w-3xl">
+      <p class="mb-4 text-sm font-medium uppercase tracking-widest text-accent-pastel">Portafolio profesional</p>
+      <h1 class="font-display text-5xl font-bold leading-tight text-white md:text-6xl">
+        Barbara Sánchez<span class="text-accent-magenta">.</span>
+      </h1>
+      <p class="mt-6 text-xl text-gray-300 md:text-2xl">
+        Analista de datos que transforma información en decisiones — BI, reporting y formación con impacto real.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="#proyectos" class="rounded-xl bg-accent-magenta px-6 py-3 text-sm font-semibold text-white shadow-glow-magenta transition-transform hover:scale-105">
+          Ver proyectos
+        </a>
+        <a href="#contacto" class="rounded-xl border border-white/10 px-6 py-3 text-sm font-semibold text-gray-300 transition-colors hover:border-accent-magenta/50 hover:text-white">
+          Contacto
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre mí -->
+  <section id="sobre-mi" class="border-t border-white/5 bg-base-light/30">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <h2 class="section-heading text-white">Sobre mí</h2>
+      <div class="mt-8 grid gap-8 md:grid-cols-5">
+        <div class="md:col-span-2">
+          <div class="aspect-square overflow-hidden rounded-2xl border border-white/10 bg-base-card">
+            <img
+              src={withBase('images/barb-profile.jpg')}
+              alt="Barbara — Analista de datos"
+              class="h-full w-full object-cover"
+              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%231a1a1f%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%22200%22 y=%22210%22 text-anchor=%22middle%22 fill=%22%23D45D9E%22 font-size=%2248%22 font-family=%22system-ui%22%3EB%3C/text%3E%3C/svg%3E'"
+            />
+          </div>
+        </div>
+        <div class="md:col-span-3 space-y-4 text-gray-300 leading-relaxed">
+          <p>
+            ¡Hola! Soy Barbara, una ingeniera de sistemas peruana.
+            Creo firmemente en el poder de interpretar bien los datos, en la importancia de saber contar
+            la historia detrás de cada descubrimiento y en el valor de compartir lo que sabemos.
+          </p>
+          <p>
+            Trabajo tendiendo un puente entre la complejidad técnica y el negocio. Me dedico a transformar
+            datos crudos en información valiosa mediante soluciones visuales e intuitivas que faciliten
+            la toma de decisiones. Además, dedico parte de mi tiempo a la enseñanza y a compartir mis
+            conocimientos a través de distintos medios.
+          </p>
+          <p>
+            Lejos de los monitores, me encanta hacer música, nadar en aguas abiertas y trekear por lugares
+            escondidos del Perú.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack tecnológico -->
+  <section id="stack" class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <h2 class="section-heading text-white">Stack tecnológico</h2>
+    <p class="mt-3 max-w-2xl text-gray-400">
+      Herramientas que uso día a día para extraer, transformar, modelar y comunicar los insights.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      {techStack.map((tech) => (
+        <span class="rounded-full border border-white/10 bg-base-card px-4 py-2 text-sm text-gray-300 transition-colors hover:border-accent-magenta/40 hover:text-white">
+          <span class="text-xs text-gray-500 mr-2">{tech.category}</span>
+          {tech.name}
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- Proyectos destacados -->
+  <section id="proyectos" class="border-t border-white/5 bg-base-light/30">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <h2 class="section-heading text-white">Proyectos destacados</h2>
+      <p class="mt-3 text-gray-400"> </p>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {featuredProjects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <h2 class="section-heading text-white">Contacto</h2>
+    <p class="mt-3 text-gray-400">¿Tienes un proyecto o una oportunidad? Escríbeme.</p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <a href={`mailto:${contact.email}`} class="card group transition-all hover:border-accent-magenta/30 hover:shadow-glow-magenta">
+        <p class="text-xs uppercase tracking-wider text-gray-500">Correo</p>
+        <p class="mt-2 font-medium text-white group-hover:text-accent-magenta transition-colors">{contact.email}</p>
+      </a>
+      <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" class="card group transition-all hover:border-accent-magenta/30 hover:shadow-glow-magenta">
+        <p class="text-xs uppercase tracking-wider text-gray-500">LinkedIn</p>
+        <p class="mt-2 font-medium text-white group-hover:text-accent-magenta transition-colors">Conectar en LinkedIn →</p>
+      </a>
+      <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="card group transition-all hover:border-accent-magenta/30 hover:shadow-glow-magenta">
+        <p class="text-xs uppercase tracking-wider text-gray-500">WhatsApp</p>
+        <p class="mt-2 font-medium text-white group-hover:text-accent-magenta transition-colors">Enviar mensaje →</p>
+      </a>
+    </div>
+
+    <div class="mt-10 flex justify-center gap-4">
+      {socialLinks.map((link) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.name}
+          class="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-base-card text-gray-400 transition-all hover:border-accent-magenta/50 hover:text-accent-magenta hover:shadow-glow-magenta"
+        >
+          <SocialIcon name={link.icon} />
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

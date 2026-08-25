@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/base';
+---
+
+<BaseLayout
+  title="Docencia — Barb"
+  description="Formación en Excel, Power BI y analítica de datos — La Academia de Barb."
+  activeSection="docencia"
+  accentColor="salmon"
+>
+  <section class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <div class="max-w-3xl">
+      <span class="inline-block rounded-full border border-accent-salmon/30 bg-accent-salmon/10 px-3 py-1 text-xs font-medium text-accent-salmon">
+        Formación · Capacitación corporativa
+      </span>
+      <h1 class="mt-4 font-display text-4xl font-bold text-white md:text-5xl">Docencia</h1>
+      <p class="mt-4 text-lg text-gray-300">
+        Comparto lo que practico en el día a día: Excel avanzado, Power BI, DAX y analítica de datos
+        a través de <strong class="text-accent-academiab">La Academia de Barb</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Video principal: DAX vs Power Query -->
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-white">DAX vs Power Query — Tabla calendario</h2>
+      <p class="mt-3 max-w-2xl text-gray-400">
+        Explicación práctica de cuándo usar DAX y cuándo Power Query para crear una tabla calendario en Power BI.
+      </p>
+
+      <div class="mt-8 overflow-hidden rounded-2xl border border-accent-salmon/20 shadow-glow-salmon">
+        <div class="aspect-video">
+          <iframe
+            class="h-full w-full"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="DAX vs Power Query — Tabla calendario"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curso Excel con macros -->
+  <section class="border-t border-white/5 bg-base-light/30">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <h2 class="font-display text-2xl font-bold text-white">Curso Excel con Macros — Lima</h2>
+      <p class="mt-3 max-w-2xl text-gray-400">
+        Capacitación in-company en Excel avanzado con VBA y macros automatizadas, dictada en una empresa de Lima.
+      </p>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((n) => (
+          <div class="card overflow-hidden border-accent-salmon/10 p-0">
+            <img
+              src={withBase(`images/excel-curso-${n}.jpg`)}
+              alt={`Foto del curso Excel — ${n}`}
+              class="aspect-video w-full object-cover"
+              onerror={`this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 225%22%3E%3Crect fill=%22%231a1a1f%22 width=%22400%22 height=%22225%22/%3E%3Ctext x=%22200%22 y=%22115%22 text-anchor=%22middle%22 fill=%22%23F4A28C%22 font-size=%2214%22 font-family=%22system-ui%22%3ECurso Excel ${n}%3C/text%3E%3C/svg%3E'`}
+            />
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-2">
+        {['Excel avanzado', 'VBA / Macros', 'Automatización', 'Capacitación corporativa'].map((tag) => (
+          <span class="rounded-full border border-accent-salmon/30 bg-accent-salmon/10 px-3 py-1 text-xs text-accent-salmon">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- La Academia de Barb -->
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <div class="card border-accent-academiab/20 bg-gradient-to-br from-accent-academiab/5 to-transparent">
+        <div class="flex flex-wrap items-center gap-3">
+          <h2 class="font-display text-2xl font-bold text-white">La Academia de Barb</h2>
+          <span class="rounded-full border border-accent-academiab/40 bg-accent-academiab/10 px-3 py-1 text-xs font-medium text-accent-academiab">
+            Marca propia
+          </span>
+        </div>
+        <p class="mt-4 max-w-2xl text-gray-300">
+          Plataforma de formación en analítica de datos, Power BI y Excel. Contenido práctico orientado a
+          profesionales que quieren aplicar lo aprendido de inmediato en su trabajo.
+        </p>
+        <a
+          href="#"
+          class="mt-6 inline-flex items-center gap-2 rounded-xl bg-accent-salmon px-6 py-3 text-sm font-semibold text-base transition-transform hover:scale-105"
+        >
+          Conocer La Academia
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import SocialIcon from './SocialIcon.astro';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+import { contact, socialLinks } from '../data/site';
+---
+
+<footer class="border-t border-white/5 bg-base-light/50">
+  <div class={`mx-auto max-w-6xl px-6 ${compact ? 'py-10' : 'py-14'}`}>
+    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div>
+        <p class="font-display text-lg font-semibold text-white">Barbara</p>
+        <p class="mt-1 text-sm text-gray-400">Analista de datos · BI · Docencia</p>
+      </div>
+
+      <div class="flex flex-col gap-3 text-sm">
+        <a href={`mailto:${contact.email}`} class="accent-link flex items-center gap-2">
+          <span class="text-gray-500">✉</span> {contact.email}
+        </a>
+        <a href={contact.linkedin} target="_blank" rel="noopener noreferrer" class="accent-link flex items-center gap-2">
+          <span class="text-gray-500">in</span> LinkedIn
+        </a>
+        <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" class="accent-link flex items-center gap-2">
+          <span class="text-gray-500">💬</span> WhatsApp
+        </a>
+      </div>
+
+      <div>
+        <p class="mb-3 text-xs uppercase tracking-wider text-gray-500">Redes</p>
+        <div class="flex gap-3">
+          {socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.name}
+              class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-base-card text-gray-400 transition-all hover:border-accent-magenta/50 hover:text-accent-magenta hover:shadow-glow-magenta"
+            >
+              <SocialIcon name={link.icon} />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-10 border-t border-white/5 pt-6 text-center text-xs text-gray-600">
+      © {new Date().getFullYear()} Barbara Sánchez · Portafolio profesional
+    </p>
+  </div>
+</footer>

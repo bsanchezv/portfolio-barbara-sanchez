@@ -1,0 +1,86 @@
+---
+import type { SectionId } from '../data/site';
+import { navItems } from '../data/site';
+import { base } from '../utils/base';
+
+interface Props {
+  activeSection: SectionId;
+}
+
+const { activeSection } = Astro.props;
+
+const activeStyles: Record<SectionId, string> = {
+  home: 'bg-accent-magenta/10 text-accent-magenta ring-accent-magenta/30',
+  'bi-reporting': 'bg-accent-magenta/10 text-accent-magenta ring-accent-magenta/30',
+  'data-science': 'bg-accent-lavender/10 text-accent-lavender ring-accent-lavender/30',
+  docencia: 'bg-accent-salmon/10 text-accent-salmon ring-accent-salmon/30',
+};
+
+const activeText: Record<SectionId, string> = {
+  home: 'text-accent-magenta',
+  'bi-reporting': 'text-accent-magenta',
+  'data-science': 'text-accent-lavender',
+  docencia: 'text-accent-salmon',
+};
+---
+
+<header class="sticky top-0 z-50 border-b border-white/5 bg-base/80 backdrop-blur-md">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href={base} class="font-display text-lg font-bold text-white transition-colors hover:text-accent-magenta">
+      Barbara Sánchez<span class="text-accent-magenta">.</span>
+    </a>
+
+    <ul class="hidden items-center gap-1 md:flex">
+      {navItems.map((item) => {
+        const isActive = item.id === activeSection;
+        return (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                'rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200',
+                isActive ? 'ring-1' : '',
+                isActive ? activeStyles[item.id] : 'text-gray-400 hover:bg-white/5 hover:text-white',
+              ]}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+
+    <details class="relative md:hidden">
+      <summary class="cursor-pointer list-none rounded-lg border border-white/10 px-3 py-2 text-sm text-gray-300">
+        Menú
+      </summary>
+      <ul class="absolute right-0 mt-2 w-48 rounded-xl border border-white/10 bg-base-card py-2 shadow-xl">
+        {navItems.map((item) => {
+          const isActive = item.id === activeSection;
+          return (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'block px-4 py-2 text-sm transition-colors',
+                  isActive ? activeText[item.id] : 'text-gray-400 hover:text-white',
+                  isActive ? 'font-medium' : '',
+                ]}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </details>
+  </nav>
+</header>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

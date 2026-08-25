@@ -1,0 +1,46 @@
+---
+import type { SectionId } from '../data/site';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { withBase } from '../utils/base';
+
+interface Props {
+  title: string;
+  description?: string;
+  activeSection: SectionId;
+  accentColor?: 'magenta' | 'lavender' | 'salmon';
+}
+
+const {
+  title,
+  description = 'Portafolio profesional de Barb — Análisis de Datos, BI, Data Science y Docencia.',
+  activeSection,
+  accentColor = 'magenta',
+} = Astro.props;
+
+const accentGradients = {
+  magenta: 'from-accent-magenta/20 via-transparent to-transparent',
+  lavender: 'from-accent-lavender/20 via-transparent to-transparent',
+  salmon: 'from-accent-salmon/20 via-transparent to-transparent',
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class={`pointer-events-none fixed inset-x-0 top-0 h-96 bg-gradient-to-b ${accentGradients[accentColor]}`} aria-hidden="true" />
+    <Navbar activeSection={activeSection} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

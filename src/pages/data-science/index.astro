@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Predicción de churn — Telco',
+    dataset: 'Kaggle — Telco Customer Churn',
+    problem: 'Identificar clientes con alta probabilidad de cancelar el servicio para acciones de retención.',
+    model: 'Random Forest + análisis de feature importance',
+    result: 'Recall del 78% en la clase minoritaria (churn) con balanceo SMOTE.',
+    learning: 'La calidad del feature engineering (tenure bins, charges ratio) impactó más que el algoritmo elegido.',
+    tags: ['Python', 'scikit-learn', 'SMOTE', 'Classification'],
+  },
+  {
+    title: 'Segmentación de clientes — Mall',
+    dataset: 'Kaggle — Mall Customer Segmentation',
+    problem: 'Agrupar clientes por comportamiento de compra para estrategias de marketing personalizado.',
+    model: 'K-Means (k=5) + PCA para visualización',
+    result: '5 segmentos interpretables con Silhouette Score de 0.42.',
+    learning: 'Normalizar variables antes de clustering es crítico cuando las escalas difieren (ingreso vs. edad).',
+    tags: ['Python', 'K-Means', 'PCA', 'Unsupervised'],
+  },
+  {
+    title: 'Precio de viviendas — California',
+    dataset: 'Kaggle — California Housing',
+    problem: 'Estimar el valor mediano de viviendas a partir de variables geográficas y demográficas.',
+    model: 'Gradient Boosting Regressor',
+    result: 'RMSE de $48,200 — mejora del 12% vs. regresión lineal baseline.',
+    learning: 'Las variables de ubicación (lat/lon) capturan efectos no lineales que un modelo lineal no puede modelar.',
+    tags: ['Python', 'XGBoost', 'Regression', 'Feature Engineering'],
+  },
+];
+---
+
+<BaseLayout
+  title="Data Science — Barb"
+  description="Proyectos de práctica y aprendizaje continuo en Data Science."
+  activeSection="data-science"
+  accentColor="lavender"
+>
+  <section class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <div class="max-w-3xl">
+      <span class="inline-block rounded-full border border-accent-lavender/30 bg-accent-lavender/10 px-3 py-1 text-xs font-medium text-accent-lavender">
+        Práctica · Aprendizaje continuo
+      </span>
+      <h1 class="mt-4 font-display text-4xl font-bold text-white md:text-5xl">Data Science</h1>
+      <p class="mt-4 text-lg text-gray-300">
+        Proyectos de práctica y aprendizaje continuo en Data Science.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <div class="grid gap-8">
+        {projects.map((project, index) => (
+          <article class="card border-accent-lavender/20 transition-all hover:shadow-glow-lavender">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <span class="text-xs font-medium text-accent-lavender">Proyecto {index + 1}</span>
+                <h2 class="mt-1 font-display text-xl font-bold text-white">{project.title}</h2>
+                <p class="mt-1 text-sm text-gray-500">{project.dataset}</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span class="rounded-full border border-accent-lavender/20 bg-accent-lavender/5 px-3 py-1 text-xs text-accent-pastel">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+              <div>
+                <h3 class="text-xs uppercase tracking-wider text-gray-500">Problema</h3>
+                <p class="mt-1 text-sm text-gray-300">{project.problem}</p>
+              </div>
+              <div>
+                <h3 class="text-xs uppercase tracking-wider text-gray-500">Modelo</h3>
+                <p class="mt-1 text-sm text-gray-300">{project.model}</p>
+              </div>
+              <div>
+                <h3 class="text-xs uppercase tracking-wider text-gray-500">Resultado</h3>
+                <p class="mt-1 text-sm text-gray-300">{project.result}</p>
+              </div>
+              <div>
+                <h3 class="text-xs uppercase tracking-wider text-accent-lavender">Aprendizaje</h3>
+                <p class="mt-1 text-sm text-gray-300">{project.learning}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

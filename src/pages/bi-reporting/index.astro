@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pipeline from '../../components/Pipeline.astro';
+import { withBase } from '../../utils/base';
+---
+
+<BaseLayout
+  title="BI / Reporting — Barb"
+  description="Proyectos de Business Intelligence y reporting con Power BI, Qlik Sense, Python y Snowflake."
+  activeSection="bi-reporting"
+  accentColor="magenta"
+>
+  <section class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <div class="max-w-3xl">
+      <span class="inline-block rounded-full border border-accent-powerbi/30 bg-accent-powerbi/10 px-3 py-1 text-xs font-medium text-accent-powerbi">
+        Power BI · Qlik · Snowflake
+      </span>
+      <h1 class="mt-4 font-display text-4xl font-bold text-white md:text-5xl">
+        Análisis de Datos / BI / Reporting
+      </h1>
+      <p class="mt-4 text-lg text-gray-300">
+        Dashboards y pipelines de datos end-to-end — desde la exploración en Python hasta la visualización
+        interactiva en Power BI y Qlik Sense.
+      </p>
+    </div>
+  </section>
+
+  <!-- Proyecto Jonda -->
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-2xl font-bold text-white">Jonda</h2>
+        <span class="rounded-full bg-accent-magenta/10 px-3 py-1 text-xs text-accent-pastel">alias Honda</span>
+      </div>
+      <p class="mt-3 max-w-2xl text-gray-400">
+        Análisis completo de datos de ventas y operaciones — pipeline de tres etapas desde exploración hasta dashboard ejecutivo.
+      </p>
+
+      <Pipeline
+        title="Flujo del proyecto"
+        steps={[
+          {
+            number: 1,
+            title: 'Exploración',
+            tool: 'Python (EDA)',
+            description: 'Análisis exploratorio, limpieza y detección de patrones en los datos crudos.',
+            color: '#F2C811',
+          },
+          {
+            number: 2,
+            title: 'Transformación',
+            tool: 'Python / Power Query',
+            description: 'Modelado de datos, reglas de negocio y preparación para visualización.',
+            color: '#F2C811',
+          },
+          {
+            number: 3,
+            title: 'Visualización',
+            tool: 'Power BI / Canva',
+            description: 'Dashboard interactivo con KPIs, filtros dinámicos y vistas ejecutivas.',
+            color: '#F2C811',
+          },
+        ]}
+      />
+
+      <div class="mt-8 grid gap-8 lg:grid-cols-2">
+        <div class="card overflow-hidden border-accent-powerbi/20 shadow-glow-powerbi">
+          <img
+            src={withBase('images/jonda-dashboard.png')}
+            alt="Dashboard Jonda — Power BI"
+            class="w-full rounded-lg"
+            onerror="this.parentElement.innerHTML='<div class=\'flex h-64 items-center justify-center bg-base-light text-gray-500 text-sm\'>Captura del dashboard — reemplazar con imagen real</div>'"
+          />
+        </div>
+        <div class="space-y-4">
+          <div class="aspect-video overflow-hidden rounded-xl border border-white/10">
+            <iframe
+              class="h-full w-full"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Demo dashboard Jonda"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            />
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {['Python', 'Pandas', 'Power Query', 'DAX', 'Power BI'].map((tech) => (
+              <span class="rounded-full border border-accent-powerbi/30 bg-accent-powerbi/10 px-3 py-1 text-xs text-accent-powerbi">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyecto Snowflake + Qlik -->
+  <section class="border-t border-white/5 bg-base-light/30">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 class="font-display text-2xl font-bold text-white">Snowflake + Qlik Sense</h2>
+        <span class="rounded-full border border-accent-qlik/30 bg-accent-qlik/10 px-3 py-1 text-xs text-accent-qlik">
+          Qlik Sense
+        </span>
+      </div>
+      <p class="mt-3 max-w-2xl text-gray-400">
+        Modelado de datos en la nube con Snowflake y visualización analítica en Qlik Sense para reporting corporativo.
+      </p>
+
+      <Pipeline
+        title="Flujo del proyecto"
+        steps={[
+          {
+            number: 1,
+            title: 'Modelado',
+            tool: 'Snowflake',
+            description: 'Diseño del modelo de datos, vistas y procedimientos en el data warehouse.',
+            color: '#009845',
+          },
+          {
+            number: 2,
+            title: 'Conexión',
+            tool: 'Qlik Sense',
+            description: 'Carga de datos, asociaciones y script de transformación en Qlik.',
+            color: '#009845',
+          },
+          {
+            number: 3,
+            title: 'Visualización',
+            tool: 'Qlik Sense',
+            description: 'App analítica con gráficos interactivos y filtros para usuarios de negocio.',
+            color: '#009845',
+          },
+        ]}
+      />
+
+      <div class="mt-8 grid gap-8 lg:grid-cols-2">
+        <div class="card overflow-hidden border-accent-qlik/20 shadow-glow-qlik">
+          <img
+            src={withBase('images/qlik-dashboard.png')}
+            alt="Dashboard Qlik Sense"
+            class="w-full rounded-lg"
+            onerror="this.parentElement.innerHTML='<div class=\'flex h-64 items-center justify-center bg-base-light text-gray-500 text-sm\'>Captura Qlik Sense — reemplazar con imagen real</div>'"
+          />
+        </div>
+        <div class="space-y-4">
+          <div class="aspect-video overflow-hidden rounded-xl border border-white/10">
+            <iframe
+              class="h-full w-full"
+              src="https://www.youtube.com/embed/a8_dWvmkz2k?si=WjlFeY_CVCq1viGp                                "
+              title="Demo Qlik Sense"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            />
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {['Snowflake', 'SQL', 'Qlik Sense', 'Qlik Script', 'Set Analysis'].map((tech) => (
+              <span class="rounded-full border border-accent-qlik/30 bg-accent-qlik/10 px-3 py-1 text-xs text-accent-qlik">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,56 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  accent: string;
+  glow: string;
+  border: string;
+}
+
+const { title, description, href, accent, glow, border } = Astro.props;
+
+const barGradients: Record<string, string> = {
+  'accent-magenta': 'from-accent-magenta to-accent-pastel',
+  'accent-lavender': 'from-accent-lavender to-accent-pastel',
+  'accent-salmon': 'from-accent-salmon to-accent-pastel',
+};
+
+const hoverText: Record<string, string> = {
+  'accent-magenta': 'group-hover:text-accent-magenta',
+  'accent-lavender': 'group-hover:text-accent-lavender',
+  'accent-salmon': 'group-hover:text-accent-salmon',
+};
+
+const arrowColor: Record<string, string> = {
+  'accent-magenta': 'text-accent-magenta',
+  'accent-lavender': 'text-accent-lavender',
+  'accent-salmon': 'text-accent-salmon',
+};
+
+const barClass = barGradients[accent] ?? 'from-accent-magenta to-accent-pastel';
+const textHover = hoverText[accent] ?? 'group-hover:text-accent-magenta';
+const arrow = arrowColor[accent] ?? 'text-accent-magenta';
+---
+
+<a
+  href={href}
+  class:list={[
+    'group card block transition-all duration-300 hover:-translate-y-1',
+    glow,
+    border,
+    'border hover:shadow-lg',
+  ]}
+>
+  <div class:list={['mb-4 h-2 w-16 rounded-full bg-gradient-to-r group-hover:w-24 transition-all duration-300', barClass]} />
+  <h3 class:list={['font-display text-xl font-bold text-white transition-colors', textHover]}>
+    {title}
+  </h3>
+  <p class="mt-2 text-sm text-gray-400">{description}</p>
+  <span class:list={['mt-4 inline-flex items-center gap-1 text-sm font-medium', arrow]}>
+    Ver sección
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </span>
+</a>
